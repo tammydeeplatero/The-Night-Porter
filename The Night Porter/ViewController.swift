@@ -8,7 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    //Table View Delegate Methods
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("You selected row \(indexPath.row) in section \(indexPath.section)")
+    }
     
     //Table View Data Source Methods
     
@@ -17,13 +22,49 @@ class ViewController: UIViewController, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+        switch section {
+        case 0:
+            return dailyTasks.count
+        case 1:
+            return weeklyTasks.count
+        case 2:
+            return monthlyTasks.count
+        default:
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        let cell = UITableViewCell()
+        
+        switch indexPath.section {
+        case 0:
+            cell.textLabel?.text = dailyTasks[indexPath.row]
+        case 1:
+            cell.textLabel?.text = weeklyTasks[indexPath.row]
+        case 2:
+            cell.textLabel?.text = monthlyTasks[indexPath.row]
+        default:
+            cell.textLabel?.text = "This shouldn't happen"
+        }
+        
+        return cell
+        
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+
+        switch section {
+        case 0:
+            return "Daily Tasks"
+        case 1:
+            return "Weekly Tasks"
+        case 2:
+            return "Monthly Tasks"
+        default:
+            return nil
+        }
+    }
     
     let dailyTasks = [ "Check all windows",
         "Check all doors",
