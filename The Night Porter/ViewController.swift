@@ -8,7 +8,39 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDataSource {
+    
+    //Table View Data Source Methods
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        <#code#>
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        <#code#>
+    }
+    
+    
+    let dailyTasks = [ "Check all windows",
+        "Check all doors",
+        "Is the boiler fueld?",
+        "Check the mailbox",
+        "Empty trash containers",
+        "If freezing, check water pipes",
+        "Document \"strange and unusual\" occurences",]
+    
+    let weeklyTasks = [ "Check inside all cabins",
+                       "Flush all lavatories inside cabins",
+                       "Walk the perimeter of the property",]
+    
+    let monthlyTasks = [ "Test security alarms",
+                       "Test motion detectors",
+                       "Test smoke alarms",]
+    
 
     @IBAction func changeBackground(_ sender: Any) {
         view.backgroundColor = UIColor.darkGray
@@ -32,4 +64,6 @@ class ViewController: UIViewController {
 
 
 }
+
+
 
